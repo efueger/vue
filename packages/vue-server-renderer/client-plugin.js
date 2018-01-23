@@ -84,3 +84,6 @@ VueSSRClientPlugin.prototype.apply = function apply (compiler) {
 };
 
 module.exports = VueSSRClientPlugin;
+
+
+add lines to test
