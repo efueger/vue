@@ -28,8 +28,9 @@ VueSSRClientPlugin.prototype.apply = function apply (compiler) {
   compiler.plugin('emit', function (compilation, cb) {
     var stats = compilation.getStats().toJson();
 
-    var allFiles = uniq(stats.assets
-      .map(function (a) { return a.name; }));
+    var asyncFiles = allFiles
+      .filter(isJS)
+      .filter(function (file) { return initialFiles.indexOf(file) < 0; });
 
     var initialFiles = uniq(Object.keys(stats.entrypoints)
       .map(function (name) { return stats.entrypoints[name].assets; })
